@@ -37,10 +37,10 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:src="@drawable/ic_notifications"
-                android:tint="@color/white"
                 android:padding="8dp"
                 android:contentDescription="Notifications"
-                android:background="?attr/selectableItemBackgroundBorderless" />
+                android:background="?attr/selectableItemBackgroundBorderless"
+                app:tint="@color/white" />
 
         </LinearLayout>
 
@@ -66,8 +66,8 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_search"
-                    android:tint="#757575"
-                    android:contentDescription="Search icon" />
+                    android:contentDescription="Search icon"
+                    app:tint="#757575" />
 
                 <TextView
                     android:id="@+id/btnSearch"
@@ -86,10 +86,10 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:src="@drawable/ic_filter"
-                    android:tint="#757575"
                     android:padding="8dp"
                     android:contentDescription="Filter"
-                    android:background="?attr/selectableItemBackgroundBorderless" />
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    app:tint="#757575" />
 
             </LinearLayout>
 
