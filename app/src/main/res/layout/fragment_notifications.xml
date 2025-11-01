@@ -1,26 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white">
+    android:background="#FAFAFA">
 
-    <!-- Header -->
+    <!-- Header with Gradient -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#4CAF50"
-        android:orientation="horizontal"
-        android:padding="16dp"
-        android:gravity="center">
+        android:background="@drawable/bg_gradient_primary"
+        android:orientation="vertical"
+        android:paddingTop="16dp"
+        android:paddingBottom="24dp"
+        android:elevation="4dp">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="SubMe"
+            android:text="Thông báo"
             android:textColor="@color/white"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-medium"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp" />
 
     </LinearLayout>
 
@@ -30,7 +35,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:padding="16dp" />
+        android:padding="12dp"
+        android:clipToPadding="false" />
 
     <!-- Empty State -->
     <LinearLayout
@@ -40,29 +46,56 @@
         android:layout_weight="1"
         android:gravity="center"
         android:orientation="vertical"
+        android:padding="32dp"
         android:visibility="visible">
 
-        <ImageView
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:src="@drawable/ic_notifications"
-            android:tint="@color/gray_light" />
+        <!-- Empty Icon with Circle Background -->
+        <FrameLayout
+            android:layout_width="140dp"
+            android:layout_height="140dp">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_chip"
+                android:alpha="0.3" />
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_notifications"
+                android:alpha="0.6"
+                app:tint="#4CAF50" />
+
+        </FrameLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="No notifications"
-            android:textColor="@color/text_gray"
-            android:textSize="16sp" />
+            android:layout_marginTop="24dp"
+            android:text="Không có thông báo"
+            android:textColor="#424242"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="You're all caught up!"
+            android:text="Bạn đã xem hết tất cả thông báo"
             android:textColor="@color/text_gray"
-            android:textSize="14sp" />
+            android:textSize="15sp"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Chúng tôi sẽ thông báo khi có gì mới! 🎉"
+            android:textColor="@color/text_gray"
+            android:textSize="14sp"
+            android:gravity="center" />
 
     </LinearLayout>
 

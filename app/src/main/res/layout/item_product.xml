@@ -3,50 +3,160 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="2dp">
+    android:layout_margin="6dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="4dp"
+    android:clickable="true"
+    android:foreground="?attr/selectableItemBackground">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="12dp">
+        android:orientation="vertical">
 
-        <View
-            android:id="@+id/productImage"
+        <!-- Product Image with Badge -->
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:background="@color/gray_light" />
+            android:layout_height="160dp">
 
-        <TextView
-            android:id="@+id/productTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Text"
-            android:textColor="@color/black"
-            android:textSize="12sp" />
+            <View
+                android:id="@+id/productImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/gray_light" />
 
-        <TextView
-            android:id="@+id/productPrice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="$0.00"
-            android:textColor="@color/text_gray"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            <!-- Popular Badge -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phổ biến"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:background="@drawable/bg_button_primary"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:layout_margin="8dp"
+                android:layout_gravity="top|start" />
 
-        <Button
-            android:id="@+id/btnAddToCart"
+            <!-- Rating Badge -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="#CC000000"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:layout_margin="8dp"
+                android:layout_gravity="top|end"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="⭐"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4.8"
+                    android:textColor="@color/white"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="2dp" />
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <!-- Product Info -->
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="36dp"
-            android:layout_marginTop="8dp"
-            android:backgroundTint="@color/orange_button"
-            android:text="XEM CHI TIẾT"
-            android:textColor="@color/white"
-            android:textSize="12sp" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <TextView
+                android:id="@+id/productTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tên sản phẩm"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:maxLines="2"
+                android:ellipsize="end" />
+
+            <!-- Price and Period -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="6dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/productPrice"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="99.000đ"
+                    android:textColor="#FF5722"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="/tháng"
+                    android:textColor="@color/text_gray"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <!-- Subscribers Count -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="4dp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:src="@drawable/ic_profile"
+                    android:tint="@color/text_gray" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1.2k người đăng ký"
+                    android:textColor="@color/text_gray"
+                    android:textSize="11sp"
+                    android:layout_marginStart="4dp" />
+
+            </LinearLayout>
+
+            <!-- Action Button -->
+            <Button
+                android:id="@+id/btnAddToCart"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_button_primary"
+                android:text="XEM CHI TIẾT"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:elevation="0dp" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

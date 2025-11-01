@@ -21,11 +21,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/white"
+        android:elevation="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_nav_menu"
-        app:itemIconTint="@color/purple_primary"
-        app:itemTextColor="@color/purple_primary" />
+        app:itemIconTint="@android:color/holo_green_dark"
+        app:itemTextColor="@android:color/holo_green_dark"
+        app:itemIconSize="26dp"
+        app:labelVisibilityMode="labeled" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

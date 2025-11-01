@@ -3,9 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="2dp">
+    android:layout_margin="6dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="4dp"
+    android:clickable="true"
+    android:foreground="?attr/selectableItemBackground">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,15 +16,55 @@
         android:padding="16dp"
         android:gravity="center_vertical">
 
-        <CheckBox
-            android:id="@+id/checkboxItem"
-            android:layout_width="24dp"
-            android:layout_height="24dp" />
+        <!-- Product Image Thumbnail -->
+        <FrameLayout
+            android:layout_width="80dp"
+            android:layout_height="80dp">
 
+            <View
+                android:id="@+id/productImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/gray_light" />
+
+            <!-- Rating Badge -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="#CC000000"
+                android:paddingStart="6dp"
+                android:paddingEnd="6dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:layout_margin="4dp"
+                android:layout_gravity="bottom|end"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="⭐"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4.8"
+                    android:textColor="@color/white"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="2dp" />
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <!-- Product Info -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
+            android:layout_marginStart="16dp"
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -30,28 +72,90 @@
                 android:id="@+id/itemTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Item name"
+                android:text="Tên sản phẩm"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:maxLines="2"
+                android:ellipsize="end" />
 
-            <TextView
-                android:id="@+id/itemPrice"
+            <!-- Price -->
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="6dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/itemPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="99.000đ"
+                    android:textColor="#FF5722"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="/tháng"
+                    android:textColor="@color/text_gray"
+                    android:textSize="12sp"
+                    android:layout_marginStart="4dp" />
+
+            </LinearLayout>
+
+            <!-- Subscribers -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_marginTop="4dp"
-                android:text="$0.00"
-                android:textColor="@color/text_gray"
-                android:textSize="14sp" />
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:src="@drawable/ic_profile"
+                    app:tint="@color/text_gray" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1.2k người đăng ký"
+                    android:textColor="@color/text_gray"
+                    android:textSize="12sp"
+                    android:layout_marginStart="4dp" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/btnDeleteItem"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@android:drawable/ic_menu_delete"
-            android:tint="@color/orange_button" />
+        <!-- Actions -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <CheckBox
+                android:id="@+id/checkboxItem"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:buttonTint="#4CAF50" />
+
+            <ImageView
+                android:id="@+id/btnDeleteItem"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="8dp"
+                android:src="@android:drawable/ic_menu_delete"
+                android:padding="4dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                app:tint="#FF5722" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

@@ -1,58 +1,52 @@
 package com.example.submeapp;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class UpgradePremiumActivity extends AppCompatActivity {
 
-    private ImageView btnBack;
-    private RadioGroup radioGroupPackage;
-    private RadioGroup radioGroupPayment;
     private RadioButton radioMonthly;
-    private RadioButton radioYearly;
-    private TextView txtTotalAmount;
-    private Button btnConfirmPayment;
+    private RadioGroup radioGroupPackage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upgrade_premium);
 
-        btnBack = findViewById(R.id.btnBack);
+        ImageView btnBack = findViewById(R.id.btnBack);
         radioGroupPackage = findViewById(R.id.radioGroupPackage);
-        radioGroupPayment = findViewById(R.id.radioGroupPayment);
         radioMonthly = findViewById(R.id.radioMonthly);
-        radioYearly = findViewById(R.id.radioYearly);
-        txtTotalAmount = findViewById(R.id.txtTotalAmount);
-        btnConfirmPayment = findViewById(R.id.btnConfirmPayment);
+        RadioButton radioYearly = findViewById(R.id.radioYearly);
+        Button btnSubscribe = findViewById(R.id.btnSubscribe);
 
         btnBack.setOnClickListener(v -> finish());
 
-        // Update price when package selection changes
-        radioGroupPackage.setOnCheckedChangeListener((group, checkedId) -> {
-            if (checkedId == R.id.radioMonthly) {
-                txtTotalAmount.setText("299.000 đ");
-            } else if (checkedId == R.id.radioYearly) {
-                txtTotalAmount.setText("2.590.000 đ");
+        btnSubscribe.setOnClickListener(v -> {
+            String packageType;
+            String price;
+
+            if (radioMonthly.isChecked()) {
+                packageType = "Gói Premium 1 tháng";
+                price = "99.000đ";
+            } else if (radioYearly.isChecked()) {
+                packageType = "Gói Premium 1 năm";
+                price = "699.000đ";
+            } else {
+                Toast.makeText(this, "Vui lòng chọn gói đăng ký", Toast.LENGTH_SHORT).show();
+                return;
             }
-        });
 
-        btnConfirmPayment.setOnClickListener(v -> {
-            String packageType = radioMonthly.isChecked() ? "Gói tháng" : "Gói năm";
-            int paymentMethodId = radioGroupPayment.getCheckedRadioButtonId();
-            RadioButton selectedPayment = findViewById(paymentMethodId);
-            String paymentMethod = selectedPayment.getText().toString();
-
-            Toast.makeText(this,
-                "Đang xử lý thanh toán " + packageType + " qua " + paymentMethod,
-                Toast.LENGTH_LONG).show();
+            // Navigate to payment screen
+            Intent intent = new Intent(UpgradePremiumActivity.this, PaymentActivity.class);
+            intent.putExtra("packageName", packageType);
+            intent.putExtra("price", price);
+            startActivity(intent);
         });
     }
 }
