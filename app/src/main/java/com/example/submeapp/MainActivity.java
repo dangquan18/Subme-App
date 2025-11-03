@@ -63,4 +63,21 @@ public class MainActivity extends AppCompatActivity {
         transaction.replace(R.id.fragmentContainer, fragment);
         transaction.commit();
     }
+
+    // Helper methods for navigation from fragments
+    public void navigateToNotifications() {
+        bottomNavigationView.setSelectedItemId(R.id.nav_notifications);
+    }
+
+    public void navigateToList() {
+        bottomNavigationView.setSelectedItemId(R.id.nav_list);
+    }
+
+    public void navigateToProfile() {
+        bottomNavigationView.setSelectedItemId(R.id.nav_profile);
+    }
+
+    public void navigateToHome() {
+        bottomNavigationView.setSelectedItemId(R.id.nav_home);
+    }
 }

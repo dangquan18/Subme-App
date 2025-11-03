@@ -4,18 +4,15 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
-import com.bumptech.glide.request.RequestOptions;
 import com.example.submeapp.api.models.Plan;
-
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.PlanViewHolder> {
 
@@ -28,7 +25,8 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.PlanViewHolder
     @NonNull
     @Override
     public PlanViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_product, parent, false);
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_product, parent, false);
         return new PlanViewHolder(view);
     }
 
@@ -36,65 +34,54 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.PlanViewHolder
     public void onBindViewHolder(@NonNull PlanViewHolder holder, int position) {
         Plan plan = planList.get(position);
 
-        holder.tvTitle.setText(plan.getName());
+        holder.productTitle.setText(plan.getName());
 
-        // Hiển thị giá với định dạng đẹp
-        String priceText = plan.getFormattedPrice() + "/" + plan.getDurationUnit();
-        holder.tvPrice.setText(priceText);
-
-        // Load image from URL using Glide
-        if (plan.getImageUrl() != null && !plan.getImageUrl().isEmpty()) {
-            Glide.with(holder.itemView.getContext())
-                .load(plan.getImageUrl())
-                .apply(new RequestOptions()
-                    .transform(new RoundedCorners(16))
-                    .placeholder(android.R.drawable.ic_menu_gallery)
-                    .error(android.R.drawable.ic_menu_gallery))
-                .into(holder.ivProductImage);
-        } else {
-            holder.ivProductImage.setImageResource(android.R.drawable.ic_menu_gallery);
+        // Format price
+        try {
+            double price = Double.parseDouble(plan.getPrice());
+            NumberFormat formatter = NumberFormat.getInstance(new Locale("vi", "VN"));
+            holder.productPrice.setText(formatter.format(price) + "đ/" + plan.getDurationUnit());
+        } catch (Exception e) {
+            holder.productPrice.setText(plan.getPrice() + "đ");
         }
 
-        // Click vào toàn bộ card để xem chi tiết
-        holder.itemView.setOnClickListener(v -> openPlanDetail(v, plan));
+        // Load image if available
+        if (plan.getImageUrl() != null && !plan.getImageUrl().isEmpty()) {
+            Glide.with(holder.itemView.getContext())
+                    .load(plan.getImageUrl())
+                    .placeholder(R.drawable.ic_package)
+                    .error(R.drawable.ic_package)
+                    .into(holder.productImage);
+        }
 
-        // Click vào nút "XEM CHI TIẾT"
-        holder.btnViewDetail.setOnClickListener(v -> openPlanDetail(v, plan));
-    }
-
-    private void openPlanDetail(View view, Plan plan) {
-        Intent intent = new Intent(view.getContext(), ProductDetailActivity.class);
-        intent.putExtra("title", plan.getName());
-        intent.putExtra("price", plan.getFormattedPrice() + "/" + plan.getDurationUnit());
-        intent.putExtra("description", plan.getDescription());
-        intent.putExtra("imageUrl", plan.getImageUrl());
-        intent.putExtra("planId", plan.getId());
-        view.getContext().startActivity(intent);
+        // Click on card to view details
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(v.getContext(), ProductDetailActivity.class);
+            intent.putExtra("planId", plan.getId());
+            v.getContext().startActivity(intent);
+        });
     }
 
     @Override
     public int getItemCount() {
-        return planList.size();
+        return planList != null ? planList.size() : 0;
     }
 
+    // Method to update list for filtering
     public void updateList(List<Plan> newList) {
         this.planList = newList;
         notifyDataSetChanged();
     }
 
     static class PlanViewHolder extends RecyclerView.ViewHolder {
-        ImageView ivProductImage;
-        TextView tvTitle;
-        TextView tvPrice;
-        Button btnViewDetail;
+        TextView productTitle, productPrice;
+        ImageView productImage;
 
         public PlanViewHolder(@NonNull View itemView) {
             super(itemView);
-            // Sử dụng đúng ID từ item_product.xml
-            ivProductImage = itemView.findViewById(R.id.productImage);
-            tvTitle = itemView.findViewById(R.id.productTitle);
-            tvPrice = itemView.findViewById(R.id.productPrice);
-            btnViewDetail = itemView.findViewById(R.id.btnAddToCart);
+            productTitle = itemView.findViewById(R.id.productTitle);
+            productPrice = itemView.findViewById(R.id.productPrice);
+            productImage = itemView.findViewById(R.id.productImage);
         }
     }
 }

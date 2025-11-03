@@ -80,38 +80,17 @@
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <!-- Get Started Button -->
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="8dp">
-
-        <Button
-            android:id="@+id/btnGetStarted"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="@color/white"
-            android:text="BẮT ĐẦU"
-            android:textColor="#4CAF50"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:elevation="0dp" />
-
-    </androidx.cardview.widget.CardView>
-
     <!-- Login Button -->
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/bg_button_secondary"
+        android:background="@color/white"
         android:text="ĐĂNG NHẬP"
-        android:textColor="@color/white"
+        android:textColor="#4CAF50"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:elevation="0dp" />
+        android:elevation="8dp" />
 
     <!-- Terms -->
     <TextView

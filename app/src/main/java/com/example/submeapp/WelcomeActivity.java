@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class WelcomeActivity extends AppCompatActivity {
 
-    private Button btnGetStarted;
     private Button btnLogin;
 
     @Override
@@ -15,14 +14,8 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        btnGetStarted = findViewById(R.id.btnGetStarted);
         btnLogin = findViewById(R.id.btnLogin);
 
-        btnGetStarted.setOnClickListener(v -> {
-            Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
-            startActivity(intent);
-            finish();
-        });
 
         btnLogin.setOnClickListener(v -> {
             Intent intent = new Intent(WelcomeActivity.this, LoginActivity.class);
