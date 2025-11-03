@@ -103,20 +103,22 @@
 
                     <!-- User Name -->
                     <TextView
+                        android:id="@+id/tvUserName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:text="Bùi Thế Anh"
+                        android:text="Đang tải..."
                         android:textColor="@color/black"
                         android:textSize="24sp"
                         android:textStyle="bold" />
 
                     <!-- User Email -->
                     <TextView
+                        android:id="@+id/tvUserEmail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="buitheanh@example.com"
+                        android:text="Đang tải..."
                         android:textColor="@color/text_gray"
                         android:textSize="15sp" />
 
@@ -139,10 +141,11 @@
                             android:textSize="14sp" />
 
                         <TextView
+                            android:id="@+id/tvUserRole"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="4dp"
-                            android:text="Thành viên mới"
+                            android:text="USER"
                             android:textColor="#4CAF50"
                             android:textSize="13sp"
                             android:textStyle="bold" />

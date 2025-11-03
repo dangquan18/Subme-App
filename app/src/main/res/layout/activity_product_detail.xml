@@ -62,11 +62,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <View
+                <ImageView
                     android:id="@+id/productImage"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/gray_light" />
+                    android:scaleType="centerCrop"
+                    android:background="@color/gray_light"
+                    android:contentDescription="Product Image" />
 
                 <!-- Badges -->
                 <TextView
@@ -306,17 +308,79 @@
 
                     </LinearLayout>
 
+                    <!-- Payment Method Selection -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Phương thức thanh toán"
+                        android:textColor="@color/text_gray"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <RadioGroup
+                        android:id="@+id/radioGroupPayment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="vertical"
+                        android:background="@drawable/bg_card_rounded"
+                        android:padding="12dp">
+
+                        <RadioButton
+                            android:id="@+id/radioVNPay"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:padding="12dp"
+                            android:text="💳 VNPay"
+                            android:textColor="@color/black"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:buttonTint="#6C63FF"
+                            android:background="?attr/selectableItemBackground" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:background="#E0E0E0" />
+
+                        <RadioButton
+                            android:id="@+id/radioMoMo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="12dp"
+                            android:text="📱 MoMo"
+                            android:textColor="@color/black"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:buttonTint="#6C63FF"
+                            android:background="?attr/selectableItemBackground" />
+
+                    </RadioGroup>
+
                     <Button
                         android:id="@+id/btnSubscribe"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
                         android:layout_marginTop="16dp"
                         android:background="@drawable/bg_button_primary"
-                        android:text="ĐĂNG KÝ NGAY"
+                        android:text="XÁC NHẬN THANH TOÁN"
                         android:textColor="@color/white"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:elevation="0dp" />
+
+                    <!-- Progress Bar for Loading -->
+                    <ProgressBar
+                        android:id="@+id/progressBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="16dp"
+                        android:visibility="gone" />
 
                 </LinearLayout>
 

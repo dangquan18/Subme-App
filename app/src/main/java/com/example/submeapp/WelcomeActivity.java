@@ -25,8 +25,7 @@ public class WelcomeActivity extends AppCompatActivity {
         });
 
         btnLogin.setOnClickListener(v -> {
-            // TODO: Navigate to login screen
-            Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
+            Intent intent = new Intent(WelcomeActivity.this, LoginActivity.class);
             startActivity(intent);
             finish();
         });

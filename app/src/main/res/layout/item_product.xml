@@ -19,11 +19,13 @@
             android:layout_width="match_parent"
             android:layout_height="160dp">
 
-            <View
+            <ImageView
                 android:id="@+id/productImage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/gray_light" />
+                android:scaleType="centerCrop"
+                android:background="@color/gray_light"
+                android:contentDescription="Product Image" />
 
             <!-- Popular Badge -->
             <TextView
