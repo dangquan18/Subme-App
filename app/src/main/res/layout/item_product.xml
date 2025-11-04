@@ -112,13 +112,6 @@
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="/tháng"
-                    android:textColor="@color/text_gray"
-                    android:textSize="12sp" />
-
             </LinearLayout>
 
             <!-- Subscribers Count -->

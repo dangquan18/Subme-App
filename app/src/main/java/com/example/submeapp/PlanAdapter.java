@@ -60,6 +60,13 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.PlanViewHolder
             intent.putExtra("planId", plan.getId());
             v.getContext().startActivity(intent);
         });
+
+        // Click on "Xem chi tiết" button
+        holder.btnViewDetail.setOnClickListener(v -> {
+            Intent intent = new Intent(v.getContext(), ProductDetailActivity.class);
+            intent.putExtra("planId", plan.getId());
+            v.getContext().startActivity(intent);
+        });
     }
 
     @Override
@@ -76,12 +83,14 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.PlanViewHolder
     static class PlanViewHolder extends RecyclerView.ViewHolder {
         TextView productTitle, productPrice;
         ImageView productImage;
+        android.widget.Button btnViewDetail;
 
         public PlanViewHolder(@NonNull View itemView) {
             super(itemView);
             productTitle = itemView.findViewById(R.id.productTitle);
             productPrice = itemView.findViewById(R.id.productPrice);
             productImage = itemView.findViewById(R.id.productImage);
+            btnViewDetail = itemView.findViewById(R.id.btnAddToCart);
         }
     }
 }

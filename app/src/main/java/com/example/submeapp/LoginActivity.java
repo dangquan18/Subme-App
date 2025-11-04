@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.submeapp.api.RetrofitClient;
 import com.example.submeapp.api.models.LoginRequest;
 import com.example.submeapp.api.models.LoginResponse;
+import com.example.submeapp.api.models.TokenPayload;
 import com.example.submeapp.utils.TokenManager;
 
 import retrofit2.Call;
@@ -108,8 +109,8 @@ public class LoginActivity extends AppCompatActivity {
 
                     Toast.makeText(LoginActivity.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
 
-                    // Chuyển sang màn hình chính
-                    navigateToMain();
+                    // Kiểm tra role và chuyển sang màn hình tương ứng
+                    navigateBasedOnRole();
                 } else {
                     Toast.makeText(LoginActivity.this, "Email hoặc mật khẩu không đúng", Toast.LENGTH_SHORT).show();
                 }
@@ -127,11 +128,24 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void navigateToMain() {
-        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
+    private void navigateBasedOnRole() {
+        TokenPayload userInfo = tokenManager.getUserInfo();
+        if (userInfo != null && "vendor".equals(userInfo.getRole())) {
+            // Chuyển sang màn hình vendor
+            Intent intent = new Intent(LoginActivity.this, VendorMainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        } else {
+            // Chuyển sang màn hình user
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
         finish();
+    }
+
+    private void navigateToMain() {
+        navigateBasedOnRole();
     }
 }
 

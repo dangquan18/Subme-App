@@ -19,9 +19,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.submeapp.adapters.BannerAdapter;
 import com.example.submeapp.api.RetrofitClient;
 import com.example.submeapp.api.models.Plan;
 import com.example.submeapp.api.models.ProfileResponse;
+import com.example.submeapp.models.Banner;
 import com.example.submeapp.utils.TokenManager;
 
 import org.json.JSONObject;
@@ -241,8 +243,45 @@ public class HomeFragment extends Fragment {
     }
 
     private void setupBanner() {
-        // TODO: Implement banner slider with ViewPager2
-        // For now, just hide it or show a placeholder
+        List<Banner> banners = new ArrayList<>();
+
+        // Banner 1: Premium promotion
+        banners.add(new Banner(
+            R.drawable.ic_banner_premium,
+            "Tiết kiệm đến 50%",
+            "Với gói đăng ký Premium hàng năm",
+            "#667eea"
+        ));
+
+        // Banner 2: Subscription benefits
+        banners.add(new Banner(
+            R.drawable.ic_banner_subscription,
+            "Quản lý dễ dàng",
+            "Tất cả gói đăng ký trong 1 ứng dụng",
+            "#f093fb"
+        ));
+
+        // Banner 3: Time management
+        banners.add(new Banner(
+            R.drawable.ic_banner_time,
+            "Không bỏ lỡ",
+            "Nhận thông báo trước khi hết hạn",
+            "#4facfe"
+        ));
+
+        BannerAdapter bannerAdapter = new BannerAdapter(banners);
+        bannerViewPager.setAdapter(bannerAdapter);
+
+        // Auto-scroll banner every 3 seconds
+        bannerViewPager.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                int currentItem = bannerViewPager.getCurrentItem();
+                int nextItem = (currentItem + 1) % banners.size();
+                bannerViewPager.setCurrentItem(nextItem, true);
+                bannerViewPager.postDelayed(this, 3000);
+            }
+        }, 3000);
     }
 
     private void setupStatistics() {
@@ -252,5 +291,6 @@ public class HomeFragment extends Fragment {
         tvDaysLeft.setText("15");
     }
 }
+
 
 

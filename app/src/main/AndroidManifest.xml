@@ -42,6 +42,11 @@
             android:exported="false" />
 
         <activity
+            android:name=".VendorMainActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SubMeAPp" />
+
+        <activity
             android:name=".EditProfileActivity"
             android:exported="false"
             android:theme="@style/Theme.SubMeAPp" />
